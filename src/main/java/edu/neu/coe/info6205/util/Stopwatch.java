@@ -35,6 +35,9 @@ public class Stopwatch implements AutoCloseable {
     public void close() {
         start = null;
     }
+    public String toString() {
+        return lap() + " ms";
+    }
 
     private Long start;
 }

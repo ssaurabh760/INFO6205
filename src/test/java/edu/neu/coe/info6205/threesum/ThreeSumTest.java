@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.threesum;
 
+import edu.neu.coe.info6205.util.Stopwatch;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -152,5 +153,32 @@ public class ThreeSumTest {
         Triple[] triplesCubic = new ThreeSumCubic(ints).getTriples();
         assertEquals(triplesCubic.length, triplesQuadratic.length);
     }
+    @Test
+    public void testTimingObservation() {
+        int initialSize = 100;
+        for (int i = 0; i < 5; i++) {
+            int[] ints = new Source(initialSize * (1 << i), initialSize * (1 << i), 1L).intsSupplier(initialSize * (1 << i)).get();
+            Arrays.sort(ints);
+
+            try (Stopwatch quadraticStopwatch = new Stopwatch()) {
+                ThreeSum target = new ThreeSumQuadratic(ints);
+                Triple[] triples = target.getTriples();
+                System.out.println("N = " + (initialSize * (1 << i)) + " - Quadratic Time: " + quadraticStopwatch.lap() + " ms");
+            }
+
+            try (Stopwatch cubicStopwatch = new Stopwatch()) {
+                ThreeSum target = new ThreeSumCubic(ints);
+                Triple[] triples = target.getTriples();
+                System.out.println("N = " + (initialSize * (1 << i)) + " - Cubic Time: " + cubicStopwatch.lap() + " ms");
+            }
+
+            try (Stopwatch calipersStopwatch = new Stopwatch()) {
+                ThreeSum target = new ThreeSumQuadraticWithCalipers(ints);
+                Triple[] triples = target.getTriples();
+                System.out.println("N = " + (initialSize * (1 << i)) + " - Quadratic with Calipers Time: " + calipersStopwatch.lap() + " ms");
+            }
+        }
+    }
+
 
 }
