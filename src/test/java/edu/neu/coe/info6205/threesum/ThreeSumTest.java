@@ -177,6 +177,11 @@ public class ThreeSumTest {
                 Triple[] triples = target.getTriples();
                 System.out.println("N = " + (initialSize * (1 << i)) + " - Quadratic with Calipers Time: " + calipersStopwatch.lap() + " ms");
             }
+            try (Stopwatch quadrathmicStopwatch = new Stopwatch()) {
+                ThreeSum target = new ThreeSumQuadrithmic(ints);
+                Triple[] triples = target.getTriples();
+                System.out.println("N = " + (initialSize * (1 << i)) + " - Quadrithmic Time: " + quadrathmicStopwatch.lap() + " ms");
+            }
         }
     }
 
