@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.util;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -61,34 +62,36 @@ public class Timer {
      */
     public <T, U> double repeat(int n, boolean warmup, Supplier<T> supplier, Function<T, U> function, UnaryOperator<T> preFunction, Consumer<U> postFunction) {
         // TO BE IMPLEMENTED : note that the timer is running when this method is called and should still be running when it returns.
+        pause();
+        logger.trace("repeat: with " + n + " runs");
+        T t = null;
+        U u = null;
 
+        for (int i = 0; i < n; i++) {
 
+            if (preFunction != null) {
+                t = preFunction.apply(supplier.get());
+            } else {
+                t = supplier.get();
+            }
 
+            resume();
+            u = function.apply(t);
+            lap();
+            pause();
 
+            if (postFunction != null) {
+                postFunction.accept(u);
+            }
 
+        }
 
+        double meanLapTime = meanLapTime();
+        resume();
 
+        return meanLapTime;
+        // END
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // SKELETON
-         return 0;
-        // END SOLUTION
     }
 
     /**
@@ -213,10 +216,7 @@ public class Timer {
      * @return the number of ticks for the system clock. Currently defined as nano time.
      */
     private static long getClock() {
-        // TO BE IMPLEMENTED 
-
-        // SKELETON
-         return 0;
+        return System.nanoTime();
         // END SOLUTION
     }
 
@@ -228,10 +228,7 @@ public class Timer {
      * @return the corresponding number of milliseconds.
      */
     private static double toMillisecs(long ticks) {
-        // TO BE IMPLEMENTED 
-
-        // SKELETON
-         return 0;
+        return ticks / 1_000_000.0;
         // END SOLUTION
     }
 
