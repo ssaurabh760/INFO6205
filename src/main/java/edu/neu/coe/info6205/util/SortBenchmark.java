@@ -41,19 +41,7 @@ public class SortBenchmark {
         Config config = Config.load(SortBenchmark.class);
 //        logger.info("SortBenchmark.main: " + config.get("SortBenchmark", "version") + " with word counts: " + Arrays.toString(args));
         if (args.length == 0) logger.warn("No word counts specified on the command line");
-<<<<<<< HEAD
-        new SortBenchmark(config).doMain(args);
-    }
 
-    void doMain(String[] args) {
-        sortStrings(getWordCounts(args));
-        doIntegerSorts(getWordCounts(args));
-    }
-
-    public void doIntegerSorts(Stream<Integer> wordCounts) {
-        if (isConfigBenchmarkIntegerSorter("shellsort"))
-            wordCounts.forEach(this::getSortedIntegersByShellSort);
-=======
 
         int minimum = 10000;
         int maximum = 256000;
@@ -70,7 +58,7 @@ public class SortBenchmark {
             List<SortWithHelper<Integer>> sorters = getSorters(n, config);
             sorters.forEach(sorter -> benchmark.sortIntegersbySorter(n,sorter));
         });
->>>>>>> 8340597 (Assignment6)
+
     }
 
 
