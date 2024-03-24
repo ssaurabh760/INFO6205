@@ -38,6 +38,11 @@ public class ThreeSumQuadratic implements ThreeSum {
     public List<Triple> getTriples(int j) {
         List<Triple> triples = new ArrayList<>();
         // TO BE IMPLEMENTED  : for each candidate, test if a[i] + a[j] + a[k] = 0.
+
+
+
+
+
         int left = 0;
         int right = length - 1;
 
@@ -57,6 +62,10 @@ public class ThreeSumQuadratic implements ThreeSum {
         }
 
         return triples;
+
+
+
+
 
     }
 

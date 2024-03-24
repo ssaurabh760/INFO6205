@@ -63,11 +63,14 @@ public class InsertionSort<X extends Comparable<X>> extends SortWithHelper<X> {
     public void sort(X[] xs, int from, int to) {
         final Helper<X> helper = getHelper();
 
+
+
         // TO BE IMPLEMENTED
         int i, j;
         X key;
         for (i = from; i < to; i++) {
             j = i;
+
 
             while (j > from) {
                 if (helper.swapConditional(xs,j-1,j))
@@ -76,6 +79,7 @@ public class InsertionSort<X extends Comparable<X>> extends SortWithHelper<X> {
                     break;
             }
         }
+
     }
 
     public static final String DESCRIPTION = "Insertion sort";

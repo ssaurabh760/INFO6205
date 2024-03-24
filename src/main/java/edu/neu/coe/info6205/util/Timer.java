@@ -62,6 +62,8 @@ public class Timer {
      */
     public <T, U> double repeat(int n, boolean warmup, Supplier<T> supplier, Function<T, U> function, UnaryOperator<T> preFunction, Consumer<U> postFunction) {
         // TO BE IMPLEMENTED : note that the timer is running when this method is called and should still be running when it returns.
+
+
         pause();
         logger.trace("repeat: with " + n + " runs");
         T t = null;
@@ -91,6 +93,15 @@ public class Timer {
 
         return meanLapTime;
         // END
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -216,7 +227,9 @@ public class Timer {
      * @return the number of ticks for the system clock. Currently defined as nano time.
      */
     private static long getClock() {
+
         return System.nanoTime();
+
         // END SOLUTION
     }
 
@@ -228,7 +241,9 @@ public class Timer {
      * @return the corresponding number of milliseconds.
      */
     private static double toMillisecs(long ticks) {
+
         return ticks / 1_000_000.0;
+
         // END SOLUTION
     }
 

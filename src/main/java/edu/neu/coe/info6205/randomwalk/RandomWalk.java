@@ -24,8 +24,12 @@ public class RandomWalk {
         x += dx;
         y += dy;
 
+        x += dx;
+        y += dy;
+
 
         // SKELETON
+
 
         // END SOLUTION
     }
@@ -36,10 +40,12 @@ public class RandomWalk {
      * @param m the number of steps the drunkard takes
      */
     private void randomWalk(int m) {
+
         // TO BE IMPLEMENTED
         for (int i = 0; i < m; i++) {
             randomMove();
         }
+
 
     }
 
@@ -59,10 +65,12 @@ public class RandomWalk {
      * @return the (Euclidean) distance from the origin to the current position.
      */
     public double distance() {
+
         // TO BE IMPLEMENTED
         return Math.sqrt(x * x + y * y);
 
         // SKELETON
+
 
         // END SOLUTION
     }
